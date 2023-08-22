@@ -63,7 +63,7 @@ async function FavoriteMusic(data: SpotifyData) {
                 });
             const songs = Data.name.split('\n');
             return (
-                <Card key={'Music' + index} className="py-4 h-full w-full bg-slate-800 max-w-[310px]">
+                <Card key={'Music' + index} className="py-4 h-full w-full bg-slate-500 max-w-[310px]">
                     <a href={Data.external_urls.spotify} target="_blank" rel="noopener noreferrer">
                         <CardHeader className="pb-0 pt-2 px-4 flex-col items-start">
                             <p className="text-tiny text-slate-400 uppercase font-bold">{likesinger[0]}</p>
