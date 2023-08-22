@@ -1,4 +1,5 @@
 import "../../styles/globals.css"
+import NavBar from "../component/Navbar";
 import { Analytics } from '@vercel/analytics/react'
 import { Roboto_Mono} from 'next/font/google'
 import {Providers} from "../providers";
@@ -26,6 +27,7 @@ export default function RootLayout({
             <Analytics />
             <body>
                 <Providers>
+                    <NavBar />
                     {children}
                 </Providers>
             </body>
