@@ -4,14 +4,14 @@
 SpotifyAPIから直近1ヶ月間で自分がよく聞いた曲を取得して
 リスト化させて表示しています。
 
-今後ページを増やす予定
+##TODO:今後ページを増やす予定
 
-使っている技術
-typescript
-React(NextJs)
-tailwindCss
-NextUI
+*使っている技術
+ *typescript
+ *React(NextJs)
+ *tailwindCss
+ *NextUI
 
-今後使いたい技術
-Supabase
-Zustand
+*今後使いたい技術
+ *Supabase
+ *Zustand or Jotai
