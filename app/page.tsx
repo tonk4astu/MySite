@@ -18,7 +18,7 @@ export default async function Page() {
         <>
             <NavBar />
             <main key="main">
-                <div key={'MusicList'} className={`flex flex-col items-center `}>{
+                <div key={'MusicList'} className={`flex flex-wrap items-center justify-center `}>{
                     data.map((element) => {
                         return element;
                     })
