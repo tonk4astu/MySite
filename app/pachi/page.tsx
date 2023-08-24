@@ -1,8 +1,12 @@
-import Calculation from "../component/Calculation"
+import RotateCalculation from "../component/RotateCalculation"
+import Katikati from "../component/katikati"
 export default function Page() {
   
   return (
-    <Calculation/>
+    <>
+      <RotateCalculation/>
+      <Katikati/>
+    </>
   )
     
 }
