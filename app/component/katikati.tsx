@@ -33,13 +33,15 @@ export default function katikati() {
         <h4>回転数: {Rotate} </h4>
             </CardHeader>
             <CardBody>
-            <Chip onClick={()=>useKatikatiStore.setState({Bell: Bell + 1})}>
-                🔔🔺{Bell}
-            </Chip>
-            <Input type="number" value={Bell.toString()} onChange={(e)=>useKatikatiStore.setState({Bell:parseInt(e.target.value)})}/>
-            <Chip onClick={()=>useKatikatiStore.setState({Bell: Bell - 1})}>
-                🔔🔻{Bell}
-            </Chip>
+            <div className='flex'>
+                <Chip className=' whitespace-nowrap' onClick={()=>useKatikatiStore.setState({Bell: Bell + 1})}>
+                    🔔🔺
+                </Chip>
+                <Input type="number" value={Bell.toString()} onChange={(e)=>useKatikatiStore.setState({Bell:parseInt(e.target.value)})}/>
+                <Chip className=' whitespace-nowrap'  onClick={()=>useKatikatiStore.setState({Bell: Bell - 1})}>
+                    🔔🔻
+                </Chip>
+            </div>
             <input type="number" value={Rotate} onChange={(e)=>{
                 useKatikatiStore.setState({Rotate:parseInt(e.target.value)});
                 CalcAverage(Rotate,Bell,Cherry,StrongCherry,WaterMelon,StrongWaterMelon,ChanceA,ChanceB);
