@@ -1,7 +1,7 @@
 'use client'
 import { useKatikatiStore,KatikatiStore } from './store/KatikatiStore';
-import { Card,CardHeader } from '@nextui-org/card';
-import { Chip } from '@nextui-org/react';
+import { Card,CardHeader,CardBody } from '@nextui-org/card';
+import { Chip,Input } from '@nextui-org/react';
 export default function katikati() {
     const Rotate = useKatikatiStore(state => state.Rotate);
     const Bell = useKatikatiStore(state => state.Bell);
@@ -21,24 +21,30 @@ export default function katikati() {
     const CalcAverage = useKatikatiStore(state => state.CalcAverage);
 
     return (
-        <Card  className={` bg-slate-800 text-slate-300 max-w-fit`}>
+        <Card  className={` bg-slate-800 text-slate-300`}>
         <CardHeader className=' block text-slate-300'>
-        Bell: {AveBell} <br />
-        Cherry: {AveCherry} <br />
-        StrongCherry: {AveStrongCherry} <br />
-        WaterMelon: {AveWaterMelon} <br />
-        StrongWaterMelon: {AveStrongWaterMelon} <br />
-        ChanceA: {AveChanceA} <br />
-        ChanceB: {AveChanceB} <br />
-        <h4>Rotate: {Rotate} </h4><br />
+        <span>🔔: {AveBell} </span>
+        <span>🍒: {AveCherry} </span>
+        <span>💪🍒: {AveStrongCherry} </span>
+        <span>🍉: {AveWaterMelon}</span>
+        <span>💪🍉: {AveStrongWaterMelon}</span>
+        <span>CHANCE_A: {AveChanceA} </span>
+        <span>CHANCE_B: {AveChanceB} </span>
+        <h4>回転数: {Rotate} </h4>
             </CardHeader>
+            <CardBody>
             <Chip onClick={()=>useKatikatiStore.setState({Bell: Bell + 1})}>
-                🔔{Bell}
+                🔔🔺{Bell}
+            </Chip>
+            <Input type="number" value={Bell.toString()} onChange={(e)=>useKatikatiStore.setState({Bell:parseInt(e.target.value)})}/>
+            <Chip onClick={()=>useKatikatiStore.setState({Bell: Bell - 1})}>
+                🔔🔻{Bell}
             </Chip>
             <input type="number" value={Rotate} onChange={(e)=>{
                 useKatikatiStore.setState({Rotate:parseInt(e.target.value)});
                 CalcAverage(Rotate,Bell,Cherry,StrongCherry,WaterMelon,StrongWaterMelon,ChanceA,ChanceB);
             }}/>
+            </CardBody>
         </Card>
             
     )

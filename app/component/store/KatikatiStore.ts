@@ -9,13 +9,13 @@ export type KatikatiStore = {
     StrongWaterMelon: number,
     ChanceA: number,
     ChanceB: number,
-    AveBell: number,
-    AveCherry: number,
-    AveStrongCherry: number,
-    AveWaterMelon: number,
-    AveStrongWaterMelon: number,
-    AveChanceA: number,
-    AveChanceB: number,
+    AveBell: string,
+    AveCherry: string,
+    AveStrongCherry: string,
+    AveWaterMelon: string,
+    AveStrongWaterMelon: string,
+    AveChanceA: string,
+    AveChanceB: string,
     CalcAverage:
      (
         Rotate: number, 
@@ -38,22 +38,42 @@ export const useKatikatiStore = create<KatikatiStore>((set, get) => ({
     StrongWaterMelon: 0,
     ChanceA: 0,
     ChanceB: 0,
-    AveBell: 0,
-    AveCherry: 0,
-    AveStrongCherry: 0,
-    AveWaterMelon: 0,
-    AveStrongWaterMelon: 0,
-    AveChanceA: 0,
-    AveChanceB: 0,
+    AveBell: '',
+    AveCherry: '',
+    AveStrongCherry: '',
+    AveWaterMelon: '',
+    AveStrongWaterMelon: '',
+    AveChanceA: '',
+    AveChanceB: '',
     CalcAverage: () => set(
         (state) => ({
-            AveBell: (Math.floor((state.Bell / state.Rotate * 10000)) / 100),
-            AveCherry: (Math.floor((state.Cherry / state.Rotate * 10000)) / 100),
-            AveStrongCherry: (Math.floor((state.StrongCherry / state.Rotate * 10000)) / 100),
-            AveWaterMelon: (Math.floor((state.WaterMelon / state.Rotate * 10000)) / 100),
-            AveStrongWaterMelon: (Math.floor((state.StrongWaterMelon / state.Rotate * 10000)) / 100),
-            AveChanceA: (Math.floor((state.ChanceA / state.Rotate * 10000)) / 100),
-            AveChanceB: (Math.floor((state.ChanceB / state.Rotate * 10000)) / 100),
+            AveBell: Reduction(state.Bell,state.Rotate),
+            AveCherry: Reduction(state.Cherry,state.Rotate),
+            AveStrongCherry: Reduction(state.StrongCherry,state.Rotate),
+            AveWaterMelon: Reduction(state.WaterMelon,state.Rotate),
+            AveStrongWaterMelon: Reduction(state.StrongWaterMelon,state.Rotate),
+            AveChanceA: Reduction(state.ChanceA,state.Rotate),
+            AveChanceB: Reduction(state.ChanceB,state.Rotate)
         })
     ),
 }));
+
+//約分する関数
+const  Reduction =(Hands:number,Rotate:number)=>{
+    if(Hands===0){
+        return `0/${Rotate}`;
+    }
+    if(Rotate===0){
+        return '0';
+    }
+    //最大公約数を求める
+    const gcd: (Hands: number, Rotate: number) => number =  (Hands, Rotate) => {
+        if (Rotate === 0) {
+          return Hands;
+        }
+        return gcd(Rotate, Hands % Rotate);
+      }
+      const numerator = Hands / gcd(Hands,Rotate);
+    const denominator = Rotate / gcd(Hands,Rotate);
+      return `${numerator}/${denominator}`;
+}
