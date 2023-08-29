@@ -33,14 +33,16 @@ export default function katikati() {
         <h4>回転数: {Rotate} </h4>
             </CardHeader>
             <CardBody>
-            <div className='flex'>
-                <Chip className=' whitespace-nowrap' onClick={()=>useKatikatiStore.setState({Bell: Bell + 1})}>
-                    🔔🔺
-                </Chip>
-                <Input type="number" value={Bell.toString()} onChange={(e)=>useKatikatiStore.setState({Bell:parseInt(e.target.value)})}/>
-                <Chip className=' whitespace-nowrap'  onClick={()=>useKatikatiStore.setState({Bell: Bell - 1})}>
-                    🔔🔻
-                </Chip>
+            <div className='grid grid-cols-[repeat(3,_minmax(200px,_1fr))] grid-rows-5 gap-3 '>
+                <div className='flex'>
+                    <Chip className=' whitespace-nowrap rounded-xl h-10' onClick={()=>useKatikatiStore.setState({Bell: Bell + 1})}>
+                        🔔🔺
+                    </Chip>
+                    <Input type="number" value={Bell.toString()} onChange={(e)=>useKatikatiStore.setState({Bell:parseInt(e.target.value)})}/>
+                    <Chip className=' whitespace-nowrap rounded-xl h-10'  onClick={()=>useKatikatiStore.setState({Bell: Bell - 1})}>
+                        🔔🔻
+                    </Chip>
+                </div>
             </div>
             <input type="number" value={Rotate} onChange={(e)=>{
                 useKatikatiStore.setState({Rotate:parseInt(e.target.value)});

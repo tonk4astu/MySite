@@ -20,7 +20,7 @@ export default async function Page() {
       <main key="main">
         <div
           key={'MusicList'}
-          className={`flex flex-wrap items-center justify-center `}
+          className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 justify-center `}
         >
           {data.map((element) => {
             return element;
