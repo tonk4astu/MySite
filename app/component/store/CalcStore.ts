@@ -25,7 +25,8 @@ export const useCalcStore = create<CalcStore>()(
     CalcAverage: () => set(
         (state)=>({ average:(Math.floor((state.count - state.start)/state.btncount*100)/100) })
     ),
-    Reset: () => set(
-        (state)=>({ count:0,start:0,btncount:0,average:0 })
-    ),
+    Reset: () => {set(
+        (state)=>({ count:0,start:0,average:0,btncount:0 }));
+        localStorage.removeItem("calc-store");
+            }
 }),{name:"calc-store"}));
