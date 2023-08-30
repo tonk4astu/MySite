@@ -1,5 +1,5 @@
 'use client'
-import { useCalcStore } from './store/CalcStore';
+import { useCalcStore } from '../../store/CalcStore';
 import { Card,CardHeader,CardBody } from '@nextui-org/card';
 import { Button } from '@nextui-org/react';
 export default function Calculation() {

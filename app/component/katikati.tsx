@@ -1,5 +1,5 @@
 'use client'
-import { useKatikatiStore,KatikatiStore } from './store/KatikatiStore';
+import { useKatikatiStore,KatikatiStore } from '../../store/KatikatiStore';
 import { Card,CardHeader,CardBody } from '@nextui-org/card';
 import { Chip,Input } from '@nextui-org/react';
 export default function katikati() {
@@ -34,14 +34,16 @@ export default function katikati() {
             </CardHeader>
             <CardBody>
             <div className='grid grid-cols-[repeat(3,_minmax(200px,_1fr))] grid-rows-5 gap-3 '>
-                <div className='flex'>
-                    <Chip className=' whitespace-nowrap rounded-xl h-10' onClick={()=>useKatikatiStore.setState({Bell: Bell + 1})}>
-                        🔔🔺
-                    </Chip>
-                    <Input type="number" value={Bell.toString()} onChange={(e)=>useKatikatiStore.setState({Bell:parseInt(e.target.value)})}/>
-                    <Chip className=' whitespace-nowrap rounded-xl h-10'  onClick={()=>useKatikatiStore.setState({Bell: Bell - 1})}>
-                        🔔🔻
-                    </Chip>
+                <div className='flex h-14'>
+                    <Input type="number" className=' ' value={Bell.toString()} onChange={(e)=>useKatikatiStore.setState({Bell:parseInt(e.target.value)})}/>
+                    <div>
+                        <Chip className=' whitespace-nowrap rounded-xl h-1/2 text-xs' onClick={()=>useKatikatiStore.setState({Bell: Bell + 1})}>
+                            🔔🔺
+                        </Chip>
+                        <Chip className=' whitespace-nowrap rounded-xl h-1/2 text-xs'  onClick={()=>useKatikatiStore.setState({Bell: Bell - 1})}>
+                            🔔🔻
+                        </Chip>
+                    </div>
                 </div>
             </div>
             <input type="number" value={Rotate} onChange={(e)=>{
