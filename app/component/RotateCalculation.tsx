@@ -1,7 +1,9 @@
 'use client'
 import { useCalcStore } from '../../store/CalcStore';
 import { Card,CardHeader,CardBody } from '@nextui-org/card';
+import { useState } from 'react';
 import { Button } from '@nextui-org/react';
+
 export default function Calculation() {
   const count = useCalcStore(state => state.count);
   const start = useCalcStore(state => state.start);
@@ -10,6 +12,26 @@ export default function Calculation() {
   const CalcAverage = useCalcStore(state => state.CalcAverage);
   const BtnCountInc = useCalcStore(state => state.BtnCountInc);
   const Reset = useCalcStore(state => state.Reset);
+  const [data,setData] = useState<Array<number>[]>([]);
+  const Clickbtn = () => 
+  {
+    BtnCountInc();
+    CalcAverage(count,start,btncount,average);
+    const alldata = data.concat([[
+      (btncount+1)*1000,
+      count,
+    ]]);
+    setData(alldata);
+  }
+
+  const addlists = () => {
+    return data.map((list,index) => {
+      return <li key={index}>{list[1]}回転:{list[0]}円</li>
+    })
+
+  }
+
+
   return (
     <Card  className={` bg-slate-800 text-slate-300`}>
     <CardHeader className=' block text-slate-300'>
@@ -29,14 +51,12 @@ export default function Calculation() {
             useCalcStore.setState({count:parseInt(e.target.value)});
         }}/>
       </div>
-      <Button onClick={() =>{
-        BtnCountInc();
-        CalcAverage(count,start,btncount,average);
-        }} >計算</Button>
+      <Button onClick={() =>Clickbtn()} >計算</Button>
         <Button className=' bg-yellow-400' onClick={() =>{
-            confirm("現在の情報をすべてリセットします。")?Reset():"";
+            if(confirm("現在の情報をすべてリセットします。")){Reset(); setData([]);}
             }} >リセット</Button>
             </CardBody>
+            {data.length>0? addlists():""}
     </Card>
   )
 }
