@@ -1,1 +1,1 @@
-import {middleware} from '../app/component/middleware'
+import { middleware } from '../app/middleware';

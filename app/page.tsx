@@ -1,31 +1,22 @@
 import NavBar from './component/Navbar';
+import Image from 'next/image';
 import musicAPI from './component/spotifyapi';
 import Loading from './loading';
 
 export default async function Page() {
-  const data = await musicAPI();
-  if (data === undefined) {
-    return (
-      <>
-        <NavBar />
-        <main key="main">
-          <Loading />
-        </main>
-      </>
-    );
-  }
   return (
     <>
       <NavBar />
+
       <main key="main">
-        <div
-          key={'MusicList'}
-          className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 justify-center `}
-        >
-          {data.map((element) => {
-            return element;
-          })}
-        </div>
+        <a href="https://github.com/tonk4astu">
+          <Image
+            src={'/._github-mark-white.png'}
+            alt="githubのアイコン"
+            width={100}
+            height={100}
+          ></Image>
+        </a>
       </main>
     </>
   );

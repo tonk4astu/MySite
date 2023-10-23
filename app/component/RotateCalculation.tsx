@@ -13,7 +13,7 @@ export default function Calculation() {
   const BtnCountInc = useCalcStore(state => state.BtnCountInc);
   const Reset = useCalcStore(state => state.Reset);
   const [data,setData] = useState<Array<number>[]>([]);
-  const Clickbtn = () => 
+  const clickBtn = () => 
   {
     BtnCountInc();
     CalcAverage(count,start,btncount,average);
@@ -24,7 +24,7 @@ export default function Calculation() {
     setData(alldata);
   }
 
-  const addlists = () => {
+  const addLists = () => {
     return data.map((list,index) => {
       return <li key={index}>{list[1]}回転:{list[0]}円</li>
     })
@@ -51,12 +51,12 @@ export default function Calculation() {
             useCalcStore.setState({count:parseInt(e.target.value)});
         }}/>
       </div>
-      <Button onClick={() =>Clickbtn()} >計算</Button>
+      <Button onClick={() =>clickBtn()} >計算</Button>
         <Button className=' bg-yellow-400' onClick={() =>{
             if(confirm("現在の情報をすべてリセットします。")){Reset(); setData([]);}
             }} >リセット</Button>
             </CardBody>
-            {data.length>0? addlists():""}
+            {data.length>0? addLists():""}
     </Card>
   )
 }
